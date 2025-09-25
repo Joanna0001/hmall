@@ -17,3 +17,13 @@ spring:
       transport:
         # sentinel 控制台地址
         dashboard: 117.72.198.60:8858
+        port: 8719
+        # 配置客户端IP，让Sentinel控制台能正确访问
+        client-ip: 14.103.164.47
+        # 心跳发送周期，默认为null，不发送心跳
+        heartbeat-interval-ms: 5000
+      # 开启饥饿加载，应用启动时就连接控制台
+      eager: true
+      # 取消控制台懒加载
+      filter:
+        enabled: true
