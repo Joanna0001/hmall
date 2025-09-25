@@ -1,0 +1,19 @@
+server:
+  port: 8082
+
+feign:
+  okhttp:
+    enabled: true
+
+hm:
+  swagger:
+    title: "黑马商城购物车"
+    description: "黑马商城购物车接口文档"
+    package: com.hmall.cart.controller
+
+spring:
+  cloud:
+    sentinel:
+      transport:
+        # sentinel 控制台地址
+        dashboard: 117.72.198.60:8858

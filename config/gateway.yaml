@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: item-service
+          uri: lb://item-service
+          predicates:
+            - Path=/items/**,/search/**
+        - id: hm-cart
+          uri: lb://hm-cart
+          predicates:
+            - Path=/carts/**
+        - id: hm-pay
+          uri: lb://hm-pay
+          predicates:
+            - Path=/pay-orders/**
+        - id: hm-trade
+          uri: lb://hm-trade
+          predicates:
+            - Path=/orders/**
+        - id: hm-user
+          uri: lb://hm-user
+          predicates:
+            - Path=/users/**,/addresses/**

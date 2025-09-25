@@ -1,0 +1,4 @@
+hm:
+  db:
+    host: 14.103.164.47 # 修改为你自己的虚拟机IP地址
+    pw: P@55w0rd#k9jL$2Xq # 修改为docker中的MySQL密码

@@ -1,0 +1,96 @@
+services:
+  hmall-gateway:
+    container_name: hmall-gateway
+    build:
+      context: ./hmall-gateway
+      dockerfile: Dockerfile
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    ports:
+      - "8087:8087"
+    environment:
+      SPRING_CLOUD_NACOS_SERVER_ADDR: host.docker.internal:8848
+    deploy:
+      resources:
+        limits:
+          memory: 500m
+
+  item-service:
+    container_name: item-service
+    build:
+      context: ./item-service
+      dockerfile: Dockerfile
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_CLOUD_NACOS_SERVER_ADDR: host.docker.internal:8848
+    deploy:
+      resources:
+        limits:
+          memory: 500m
+
+  cart-service:
+    container_name: cart-service
+    build:
+      context: ./cart-service
+      dockerfile: Dockerfile
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_CLOUD_NACOS_SERVER_ADDR: host.docker.internal:8848
+    deploy:
+      resources:
+        limits:
+          memory: 500m
+
+  user-service:
+    container_name: user-service
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_CLOUD_NACOS_SERVER_ADDR: host.docker.internal:8848
+    deploy:
+      resources:
+        limits:
+          memory: 500m
+
+  trade-service:
+    container_name: trade-service
+    build:
+      context: ./trade-service
+      dockerfile: Dockerfile
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_CLOUD_NACOS_SERVER_ADDR: host.docker.internal:8848
+    deploy:
+      resources:
+        limits:
+          memory: 500m
+
+  pay-service:
+    container_name: pay-service
+    build:
+      context: ./pay-service
+      dockerfile: Dockerfile
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_CLOUD_NACOS_SERVER_ADDR: host.docker.internal:8848
+    deploy:
+      resources:
+        limits:
+          memory: 500m

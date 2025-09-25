@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 117.72.198.60:8848
+        namespace: e2355e17-3c17-472c-832e-e6fefe5c2f7b
+      config:
+        server-addr: 117.72.198.60:8848
+        namespace: e2355e17-3c17-472c-832e-e6fefe5c2f7b
+        file-extension: yaml
+        shared_configs:
+          - data-id: share_log.yaml
