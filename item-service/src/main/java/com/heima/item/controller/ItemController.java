@@ -1,6 +1,7 @@
 package com.heima.item.controller;
 
 
+import cn.hutool.core.thread.ThreadUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hmall.common.domain.PageDTO;
 import com.hmall.common.domain.PageQuery;
@@ -42,6 +43,7 @@ public class ItemController {
     @ApiOperation("根据id查询商品")
     @GetMapping("{id}")
     public ItemDTO queryItemById(@PathVariable("id") Long id) {
+        ThreadUtil.sleep(500);  // 模拟业务延迟
         return BeanUtils.copyBean(itemService.getById(id), ItemDTO.class);
     }
 
