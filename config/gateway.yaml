@@ -22,3 +22,13 @@ spring:
           uri: lb://hm-user
           predicates:
             - Path=/users/**,/addresses/**
+
+docker run --name seata \
+-p 8099:8099 \
+-p 7099:7099 \
+-e SEATA_IP=117.72.198.60 \
+-v ./seata:/seata-server/resources \
+--privileged=true \
+--network leadnews_network \
+-d \
+seataio/seata-server
