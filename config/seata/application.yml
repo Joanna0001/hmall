@@ -40,8 +40,8 @@ seata:
       server-addr: 117.72.198.60:8848
       group : "DEFAULT_GROUP"
       namespace: "e2355e17-3c17-472c-832e-e6fefe5c2f7b"
-      username: "nacos"
-      password: "nacos"
+      # username: "nacos"
+      # password: "nacos"
 #  server:
 #    service-port: 8091 #If not configured, the default is '${server.port} + 1000'
   security:
@@ -81,7 +81,7 @@ seata:
       datasource: druid
       db-type: mysql
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://14.103.164.47:3306/seata?rewriteBatchedStatements=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://14.103.164.47:3306/seata?rewriteBatchedStatements=TRUE?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
       user: root
       password: P@55w0rd#k9jL$2Xq
       min-conn: 10

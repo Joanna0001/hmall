@@ -1,0 +1,91 @@
+services:
+  seata:
+    image: seataio/seata-server:1.5.2
+    container_name: seata
+    restart: unless-stopped
+    ports:
+      - "8099:8099" # 事务服务端口
+      - "7099:7099" # 控制台端口
+    environment:
+      SEATA_IP: 117.72.198.60
+      JVM_XMS: 256m
+      JVM_XMX: 256m
+    volumes:
+      - ./seata:/seata-server/resources
+    privileged: true
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      - leadnews_network
+    deploy:
+      resources:
+        limits:
+          memory: 250m
+          cpus: "0.5"
+  #  docker run --name seata -p 8099:8099 -p 7099:7099 -e SEATA_IP=117.72.198.60 -v ./seata:/seata-server/resources --privileged=true --ulimit nofile=65536:65536 --network docker-app_leadnews_network -d seataio/seata-server:1.5.2
+
+
+  # Nacos - 优化内存配置
+  nacos:
+    image: nacos/nacos-server:v2.3.1
+    container_name: leadnews_nacos
+    restart: unless-stopped
+    environment:
+      MODE: standalone
+      # 优化 JVM 内存设置
+      JVM_XMS: 300m
+      JVM_XMX: 300m
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    volumes:
+      - ./nacos/logs:/home/nacos/logs
+      - ./nacos/data:/home/nacos/data
+    deploy:
+      resources:
+        limits:
+          memory: 750m  # 限制最大内存使用
+          cpus: "0.5"
+        reservations:
+          memory: 350m
+          cpus: "0.3"
+    networks:
+      - leadnews_network
+
+  # Nginx - 优化配置
+  nginx:
+    image: nginx:1.27.5-alpine  # 使用 Alpine 版本减少镜像大小
+    container_name: leadnews_nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/html:/opt/docker-app/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+      - "18080:18080"
+      - "18081:18081"
+    depends_on:
+      - nacos
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          memory: 100m
+          cpus: "0.3"
+        reservations:
+          memory: 50m
+          cpus: "0.1"
+    networks:
+      - leadnews_network
+
+networks:
+  leadnews_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
