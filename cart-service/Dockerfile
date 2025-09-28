@@ -6,4 +6,4 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # 拷贝jar包
 COPY cart-service.jar /app.jar
 # 入口
-ENTRYPOINT ["java", "-Xms256m", "-Xmx512m", "-XX:MetaspaceSize=64m", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "--add-opens=java.base/java.lang=ALL-UNNAMED", "-Xms256m", "-Xmx512m", "-XX:MetaspaceSize=64m", "-jar", "/app.jar"]
