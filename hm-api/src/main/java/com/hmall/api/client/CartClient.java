@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 
-@FeignClient("cart-service")
+@FeignClient("hm-cart")
 public interface CartClient {
 
     @Bean
