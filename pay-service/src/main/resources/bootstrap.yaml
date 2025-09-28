@@ -16,3 +16,4 @@ spring:
           - data-id: share_jdbc.yaml
           - data-id: share_log.yaml
           - data-id: share_swagger.yaml
+          - data-id: share_seata.yaml
